@@ -1,12 +1,10 @@
 import React from "react";
 import Scorecard from "./Scorecard";
-import useCard from "../hooks/useCard";
-const Card = () => {
-    const {isscoreBoard,score,inputValue,setInputValue,data,nextQuestion,queNo,submitHandler  } = useCard();
+const Card = ({isscoreBoard,score,inputValue,setInputValue,data,nextQuestion,queNo,submitHandler }) => {
   return (
     <>
       {isscoreBoard && <Scorecard score={score} />}
-      <div className="bg-white min-w-[300px] max-w-[600px] p-4 shadow-sm flex flex-col gap-2 rounded-md shadow-gray-300">
+      <div className="bg-white min-w-[300px]  p-4 shadow-sm flex flex-col gap-2 rounded-md shadow-gray-300">
         <p className="text-center font-bold text-blue-950">Quiz App</p>
         <p className="text-lg font-semibold">Question {queNo}</p>
         <p className="text-sm"> {data[nextQuestion]?.question} </p>
@@ -18,6 +16,7 @@ const Card = () => {
               type="text"
               required={true}
               value={inputValue}
+              onEnter={submitHandler}
               onChange={(e) => {
                 setInputValue(e.target.value);
               }}
